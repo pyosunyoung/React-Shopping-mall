@@ -7,7 +7,7 @@ const ProductAll = () => {
   const [productList,setProductList] = useState([]); // 보여주는 ui는 useState
   
   const getProducts = async() => {
-    let url = `http://localhost:5000/products` // 모든 데이터 가져옴
+    let url = `https://my-json-server.typicode.com/pyosunyoung/React-Shopping-mall/products` // 모든 데이터 가져옴
     let response = await fetch(url)
     let data = await response.json();
     setProductList(data);
