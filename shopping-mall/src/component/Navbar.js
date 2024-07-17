@@ -2,6 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-regular-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 const Navbar = () => {
   const menuList = [
     '여성',
@@ -14,11 +15,13 @@ const Navbar = () => {
     '지속가능성',
   ];
   return (
-    <div>
+    <div className='nav-container'>
       <div>
         <div className="login-button">
-          <FontAwesomeIcon icon={faUser} />
+          <Link to={'/login'} className='login-button'>
+          <FontAwesomeIcon className="login-icon" icon={faUser}  />
           <div>로그인</div>
+          </Link>
         </div>
       </div>
       <div className="nav-section">

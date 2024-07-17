@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ProductCard from '../component/ProductCard';
+import { Container, Row, Col } from "react-bootstrap";
+
 
 const ProductAll = () => {
-  const [products,setProductList] = useState([]); // 보여주는 ui는 useState
-
+  const [productList,setProductList] = useState([]); // 보여주는 ui는 useState
+  
   const getProducts = async() => {
     let url = `http://localhost:5000/products` // 모든 데이터 가져옴
     let response = await fetch(url)
@@ -12,11 +14,19 @@ const ProductAll = () => {
   }
   useEffect(()=> { // api가져오는건 useEffect 사용
     getProducts()
-  })
-
+  },)
+  
   return (
     <div>
-      <ProductCard/>
+    
+      <Container>
+        
+        <Row>
+        {productList.map(menu =><Col lg={3}><ProductCard item={menu}/></Col> )}
+        </Row>
+      </Container>
+      
+      
     </div>
   )
 }
@@ -51,3 +61,8 @@ export default ProductAll
 // PUT    /posts/:id =>
 // PATCH  /posts/:id =>
 // DELETE /posts/:id =>
+
+  ////////////////////////////////////////////////////////////////////////
+  //<Container>는 부트스트랩에서 아이템이 가운데 정렬되어지게 보여주는 역할
+  // 적당한 중앙 정렬되어지게 이미지 간격도 설정됨
+  // row는 줄 테이블 느낌 알지?

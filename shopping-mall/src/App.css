@@ -1,7 +1,23 @@
+
 .login-button {
   display: flex;
   justify-content: flex-end;
   margin: 20px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.login-icon {
+  margin-right:5px;
+  margin-top:4px;
+}
+
+.card-container {
+  transition: all 0.1s linear;
+}
+
+.card-container:hover {
+  transform: scale(1.1);
 }
 
 .nav-section {
@@ -15,6 +31,7 @@
   position: relative;
   align-items: center;
   padding: 0 20px;
+  margin-top: 20px;
 }
 
 .menu-list {
@@ -51,4 +68,9 @@
   position: absolute;
   left: 10px;
   color: black;
+}
+
+.login-container {
+  width: 1000px;
+  
 }

@@ -2,8 +2,10 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import ProductAll from './page/ProductAll';
 import Login from './page/Login';
-import ProductDetail from './page/ProductDetail';
 import Navbar from './component/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect, useState } from 'react';
+import PrivateRoute from './route/PrivateRoute';
 //1. 전체상품페이지, 로그인, 상품상세페이지
 //1-1. 네비게이션 바 만들기
 //2. 전체 상품페이지에서는 전체 상품을 볼 수 있다
@@ -15,16 +17,42 @@ import Navbar from './component/Navbar';
 //6. 로그인을 하면 로그아웃이 보이고 로그아웃을 하면 로그인이 보인다.
 //7. 상품을 검색할 수 있다.
 function App() {
+  //로그인 까지 만들면 백엔드 건드려야해서 
+  //아이디, 비번 입력 후 로그인 버튼 눌렀을 때 자동로그인 되어지게 설정해보자
+  const [authenticate, setAuthenticate] = useState(false) // true면 로그인이됨 false면 로그인안됨
+  // true false 바꾸기 위해 login.js로 함수 전달
+  useEffect(() => {
+    console.log("aa",authenticate);
+  }, [authenticate]);
   return (
     <div>
       <Navbar/>
       <Routes>
-        <Route path='/' element={<ProductAll/>}/>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/product/:id' element={<ProductDetail/>}/>
+        <Route path='/' element={<ProductAll />}/>
+        <Route path='/login' element={<Login setAuthenticate={setAuthenticate}/>}/>
+        <Route path='/product/:id' element={<PrivateRoute authenticate={authenticate}/>}/>
       </Routes>
     </div>
   );
 }
 
 export default App;
+
+// 여기서 bootstrap 사용이유 layout을 사용하기 위함 한줄에 아이템이 몇개 보여줄지를 
+// 이 부스스트랩으로 적용가능
+// 화면 사이즈 숫자를 지정할 수 있다. 한줄의 최대 사이즈가 12임
+// 예로 한줄에 3 3 3 하면 3개의 아이템만 보여줄 수 있음
+
+/* <Container>
+<Row>
+  <Col>1 of 3</Col>
+  <Col xs={6}>2 of 3 (wider)</Col>
+  <Col>3 of 3</Col>
+</Row>
+<Row>
+  <Col>1 of 3</Col>
+  <Col xs={5}>2 of 3 (wider)</Col>
+  <Col>3 of 3</Col>
+</Row>
+</Container> */
+//공식문서 ㄱㄱ
